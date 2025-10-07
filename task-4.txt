@@ -1,4 +1,69 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541104
+AD-SOYAD:Ebrar sude yıldırım
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Benim seçtiğim görev otobüs rotasBAŞLA
+
+FONKSİYON EnIyiRota(durak_listesi)
+
+    n ← durak_listesi.uzunluk
+
+    // 1. DURUM: Küçük problem — doğrudan çöz
+    EĞER n ≤ 4 İSE
+        TÜM_OLASILIKLARI_HESAPLA(durak_listesi)
+        EN_KISA_ROTAYI_DÖNDÜR()
+    BİTİR_EĞER
+
+    // 2. BÖL
+    orta_nokta ← n / 2
+    alt_bölge1 ← durak_listesi[0 : orta_nokta]
+    alt_bölge2 ← durak_listesi[orta_nokta : n]
+
+    // 3. FETHET (özyinelemeli çağrılar)
+    rota1 ← EnIyiRota(alt_bölge1)
+    rota2 ← EnIyiRota(alt_bölge2)
+
+    // 4. BİRLEŞTİR
+    EN_AZ_MESAFE ← sonsuz
+    EN_IYI_BIRLESME ← boş
+
+    HER durak1 İÇİN rota1 SON_DURAKLAR LİSTESİNDE TEKRARLA
+        HER durak2 İÇİN rota2 İLK_DURAKLAR LİSTESİNDE TEKRARLA
+            mesafe ← MESAFE_HESAPLA(durak1, durak2)
+            EĞER mesafe < EN_AZ_MESAFE İSE
+                EN_AZ_MESAFE ← mesafe
+                EN_IYI_BIRLESME ← (durak1, durak2)
+            BİTİR_EĞER
+        SONRAKİ
+    SONRAKİ
+
+    // 5. Alt rotaları birleştir
+    BİRLEŞİK_ROTA ← rota1 + EN_IYI_BIRLESME + rota2
+
+    // 6. Toplam mesafeyi hesapla
+    toplam ← TOPLAM_MESAFE(BİRLEŞİK_ROTA)
+
+    // 7. Alternatif kombinasyonları kontrol et
+    alternatifler ← FARKLI_BÖLÜMLER_OLUŞTUR(durak_listesi)
+    HER alternatif İÇİN alternatifler LİSTESİNDE TEKRARLA
+        yeni_rota ← EnIyiRota(alternatif)
+        EĞER TOPLAM_MESAFE(yeni_rota) < toplam İSE
+            BİRLEŞİK_ROTA ← yeni_rota
+            toplam ← TOPLAM_MESAFE(yeni_rota)
+        BİTİR_EĞER
+    SONRAKİ
+
+    DÖNDÜR BİRLEŞİK_ROTA
+
+BİTİR_FONKSİYON
+
+// ANA PROGRAM
+YAZ "Otobüs duraklarını girin:"
+durak_listesi ← kullanıcıdan_durak_listesi_al()
+
+en_iyi_rota ← EnIyiRota(durak_listesi)
+
+YAZ "En kısa rota: ", en_iyi_rota
+YAZ "Toplam mesafe: ", TOPLAM_MESAFE(en_iyi_rota)
+
+BİTİR
