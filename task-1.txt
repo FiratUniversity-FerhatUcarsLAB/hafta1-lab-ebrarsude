@@ -1,4 +1,84 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No: 250541104
+AD-SOYAD:Ebrar sude yıldırım
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Benim seçtiğim görev mükemmel omlet yapma bu ödevi yaparken chatgpt kullandım
+"mükemmel omlet yapmak için bana önce bir algoritma yaz sonrada if ve loop içeren bir  pseudocode çevir"
+chatgpt'nin cevabı;
+Harika istek! 😄
+Ama başlamadan önce — senin seviyeni bilmem önemli: programlama temellerine (örneğin `if`, `for`, `while` gibi kavramlara) ne kadar hâkimsin?
+Ona göre açıklamaları basitleştirebilir veya biraz daha teknik tutabilirim.
+
+Yine de şimdilik orta seviye bildiğini varsayalım ve ilerleyelim.
+
+---
+
+### 🍳 1. “Mükemmel Omlet” Algoritması (Adım Adım)
+
+Bu saf algoritma, yani doğal dilde mantıksal adımlar:
+
+1. Malzemeleri hazırla (yumurta, süt, tuz, yağ, tercihe göre peynir vs.)
+2. Yumurtaları bir kaba kır.
+3. Tuz ve süt ekle.
+4. Karışımı çırp.
+5. Tavayı ısıt.
+6. Yağı ekle ve erimesini bekle.
+7. Karışımı tavaya dök.
+8. Altı pişene kadar bekle.
+9. Eğer üstü hala sıvıysa:
+
+   * Altını kıs ve üstünün pişmesini bekle.
+10. Eğer istenirse:
+
+    * Peynir ekle ve omleti katla.
+11. Piştiyse omleti tabağa al.
+12. Afiyetle ye. 😋
+
+---
+
+### 💻 2. Pseudocode (if ve loop içeren)
+
+```text
+BEGIN
+    ingredients ← ["yumurta", "süt", "tuz", "yağ", "peynir"]
+
+    FOR each item IN ingredients DO
+        CHECK item is available
+        IF item is missing THEN
+            PRINT "Eksik malzeme:", item
+            EXIT
+        ENDIF
+    ENDFOR
+
+    CRACK eggs INTO bowl
+    ADD milk AND salt
+    WHISK mixture UNTIL smooth
+
+    HEAT pan
+    ADD butter
+    WAIT UNTIL butter_melted = TRUE
+
+    POUR mixture INTO pan
+
+    WHILE omelet_bottom_is_not_cooked DO
+        WAIT 1 minute
+    ENDWHILE
+
+    IF top_is_still_liquid THEN
+        LOWER heat
+        WAIT until top_is_set = TRUE
+    ENDIF
+
+    IF user_wants_cheese = TRUE THEN
+        ADD cheese
+        FOLD omelet
+    ENDIF
+
+    SERVE omelet
+END
+```
+
+---
+
+İstersen bir sonraki adımda bu pseudocode’u **Python benzeri bir koda** çevirebiliriz ya da **akış diyagramı** haline getirebiliriz.
+Hangisini istersin: kod mu, diyagram mı?
