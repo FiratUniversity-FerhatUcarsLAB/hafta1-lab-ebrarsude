@@ -1,4 +1,82 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541104
+AD-SOYAD:Ebrar sude yıldırım
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Benim seçtiğim görev ideal kahvaltı hazırlamak bu ödeviBAŞLA
+
+malzemeler ← ["yumurta", "peynir", "zeytin", "ekmek", "çay", "tereyağı", "bal", "domates", "salatalık"]
+eksikler ← boş_liste
+
+// --- MALZEME KONTROLÜ ---
+HER malzeme İÇİN malzemeler LİSTESİNDE TEKRARLA
+    EĞER MALZEME_VAR_MI(malzeme) = HAYIR İSE
+        eksikler ← eksikler + malzeme
+    BİTİR_EĞER
+SONRAKİ
+
+EĞER eksikler BOŞ DEĞİLSE
+    YAZ "Eksik malzemeler:", eksikler
+    EĞER MARKET_AÇIK_MI() = EVET İSE
+        ALIŞVERİŞ_YAP(eksikler)
+    DEĞİLSE
+        YAZ "Market kapalı, alternatif aranıyor..."
+        HER item İÇİN eksikler LİSTESİNDE TEKRARLA
+            alternatif ← ALTERNATİF_BUL(item)
+            EĞER alternatif VARSA
+                YAZ item, "yerine", alternatif, "kullanılacak."
+                malzemeler ← malzemeler + alternatif
+            DEĞİLSE
+                YAZ item, "menüden çıkarıldı."
+                malzemeler ← malzemeler - item
+            BİTİR_EĞER
+        SONRAKİ
+    BİTİR_EĞER
+BİTİR_EĞER
+
+// --- MASA VE ARAÇLAR ---
+MASAYI_KUR()
+ARAÇLARI_HAZIRLA()
+
+// --- PİŞİRME SIRASI ---
+pişirilecekler ← ["çay", "yumurta", "ekmek"]
+hazir ← boş_liste
+
+HER yemek İÇİN pişirilecekler LİSTESİNDE TEKRARLA
+    YAZ yemek, "pişiriliyor..."
+    DURUM ← "pişiyor"
+
+    TEKRAR DURUM ≠ "hazır" OLDUĞU SÜRECE
+        BEKLE(1 dakika)
+        DURUM ← PİŞME_KONTROL(yemek)
+
+        EĞER DURUM = "yanmış" İSE
+            YAZ yemek, "yanmış, tekrar hazırlanıyor..."
+            DURUM ← "pişiyor"
+        EĞER DURUM = "hazır" İSE
+            YAZ yemek, "tamamlandı!"
+            hazir ← hazir + yemek
+        DEĞİLSE
+            YAZ yemek, "hala pişiyor..."
+        BİTİR_EĞER
+    SONRAKİ
+SONRAKİ
+
+// --- SERVİS ---
+EĞER TÜM_YEMEKLER_HAZIR_MI(pişirilecekler, hazir) = EVET İSE
+    YAZ "Kahvaltı hazır! Servis ediliyor..."
+    SERVİS_ET(hazir)
+DEĞİLSE
+    YAZ "Bazı yiyecekler eksik, yeniden pişiriliyor..."
+    GİT PİŞİRME_SIRASI
+BİTİR_EĞER
+
+// --- TEMİZLİK ---
+EĞER MASA_KİRLİ_Mİ() = EVET İSE
+    TEMİZLE("masa")
+EĞER BULASIK_VAR_MI() = EVET İSE
+    BULASIK_YIKA()
+EĞER ARTIK_VAR_MI() = EVET İSE
+    BUZDOLABINA_KALDIR()
+
+YAZ "Kahvaltı başarıyla tamamlandı!"
+BİTİR
