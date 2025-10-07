@@ -1,4 +1,55 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541104
+AD-SOYAD:Ebrar sude yıldırım
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+benim seçtiğim görev tic-tac-toe kazanma stratejisi bu ödevi yaparken chatgpt kullandım
+BAŞLA
+
+tahta ← 3x3 boş tablo
+oyuncu ← 'X'
+bilgisayar ← 'O'
+
+oyun_bitti ← HAYIR
+
+İKEN oyun_bitti = HAYIR YAP
+
+    // 1. Bilgisayar kazanabilir mi?
+    EĞER bilgisayar_bir_hamleyle_kazanabiliyor_mu(tahta) İSE
+        kazandıran_hamleyi_yap(tahta)
+    
+    DEĞİLSE_EĞER oyuncu_bir_hamleyle_kazanabiliyor_mu(tahta) İSE
+        engelleyici_hamleyi_yap(tahta)
+    
+    DEĞİLSE_EĞER tahta[1][1] = BOŞ İSE
+        tahta[1][1] ← bilgisayar
+    
+    DEĞİLSE_EĞER boş_köşe_var_mı(tahta) İSE
+        rastgele_köşe_oyna(tahta)
+    
+    DEĞİLSE_EĞER boş_kenar_var_mı(tahta) İSE
+        rastgele_kenar_oyna(tahta)
+    BİTİR_EĞER
+
+    // Her hamleden sonra durumu kontrol et
+    EĞER kazanan_var_mı(tahta) İSE
+        oyun_bitti ← EVET
+        YAZ "Bilgisayar kazandı!"
+    
+    DEĞİLSE_EĞER tahta_dolu_mu(tahta) İSE
+        oyun_bitti ← EVET
+        YAZ "Berabere!"
+    
+    DEĞİLSE
+        oyuncu_hamlesi ← oyuncudan_girdi_al()
+        hamleyi_yap(tahta, oyuncu, oyuncu_hamlesi)
+
+        EĞER kazanan_var_mı(tahta) İSE
+            oyun_bitti ← EVET
+            YAZ "Oyuncu kazandı!"
+        BİTİR_EĞER
+    BİTİR_EĞER
+
+SONRAKİ_ADIM
+BİTİR_DÖNGÜ
+
+BİTİR
