@@ -1,4 +1,124 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541104
+AD-SOYAD:Ebrar sude yıldırım
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Benim seçtiğim görev müzik koleksiyonunu düBAŞLA
+
+şarkı_listesi ← boş_liste
+
+TEKRARLA
+
+    YAZ "=== MÜZİK KOLEKSİYONU YÖNETİM SİSTEMİ ==="
+    YAZ "1 - Yeni Şarkı Ekle"
+    YAZ "2 - Şarkı Sil"
+    YAZ "3 - Şarkı Güncelle"
+    YAZ "4 - Şarkı Ara"
+    YAZ "5 - Şarkıları Sırala"
+    YAZ "6 - Koleksiyonu Listele"
+    YAZ "7 - Çıkış"
+    YAZ "Bir seçenek giriniz: "
+    SEÇİM ← kullanıcıdan_girdi_al()
+
+    EĞER SEÇİM = 1 İSE
+        YAZ "Yeni şarkının adını girin: "
+        ad ← kullanıcıdan_girdi_al()
+        YAZ "Sanatçı adını girin: "
+        sanatçı ← kullanıcıdan_girdi_al()
+        YAZ "Albüm adını girin: "
+        albüm ← kullanıcıdan_girdi_al()
+        YAZ "Türünü girin: "
+        tür ← kullanıcıdan_girdi_al()
+        YAZ "Süresini girin (dakika:saniye): "
+        süre ← kullanıcıdan_girdi_al()
+        YAZ "Yılını girin: "
+        yıl ← kullanıcıdan_girdi_al()
+
+        yeni_şarkı ← {ad: ad, sanatçı: sanatçı, albüm: albüm, tür: tür, süre: süre, yıl: yıl}
+        LİSTEYE_EKLE(şarkı_listesi, yeni_şarkı)
+        YAZ "Şarkı başarıyla eklendi!"
+
+    DEĞİLSE_EĞER SEÇİM = 2 İSE
+        YAZ "Silinecek şarkının adını girin:"
+        silinecek ← kullanıcıdan_girdi_al()
+        BULUNDU ← HAYIR
+
+        HER şarkı İÇİN şarkı_listesi LİSTESİNDE TEKRARLA
+            EĞER şarkı.ad = silinecek İSE
+                LİSTEDEN_SİL(şarkı_listesi, şarkı)
+                BULUNDU ← EVET
+                YAZ "Şarkı silindi."
+                DUR
+            BİTİR_EĞER
+        SONRAKİ
+
+        EĞER BULUNDU = HAYIR İSE
+            YAZ "Şarkı bulunamadı."
+        BİTİR_EĞER
+
+    DEĞİLSE_EĞER SEÇİM = 3 İSE
+        YAZ "Güncellenecek şarkının adını girin:"
+        hedef ← kullanıcıdan_girdi_al()
+        BULUNDU ← HAYIR
+
+        HER şarkı İÇİN şarkı_listesi LİSTESİNDE TEKRARLA
+            EĞER şarkı.ad = hedef İSE
+                YAZ "Hangi alanı değiştirmek istersiniz? (ad / sanatçı / albüm / tür / yıl)"
+                alan ← kullanıcıdan_girdi_al()
+                YAZ "Yeni değeri girin:"
+                yeni_değer ← kullanıcıdan_girdi_al()
+                GÜNCELLE(şarkı, alan, yeni_değer)
+                BULUNDU ← EVET
+                YAZ "Şarkı bilgisi güncellendi."
+                DUR
+            BİTİR_EĞER
+        SONRAKİ
+
+        EĞER BULUNDU = HAYIR İSE
+            YAZ "Şarkı bulunamadı."
+        BİTİR_EĞER
+
+    DEĞİLSE_EĞER SEÇİM = 4 İSE
+        YAZ "Aramak istediğiniz kelimeyi girin:"
+        kelime ← kullanıcıdan_girdi_al()
+        SAYAC ← 0
+
+        HER şarkı İÇİN şarkı_listesi LİSTESİNDE TEKRARLA
+            EĞER kelime şarkı.ad İÇİNDE VEYA şarkı.sanatçı İÇİNDE VARSA
+                YAZ SAYAC + 1, ") ", şarkı.ad, " - ", şarkı.sanatçı
+                SAYAC ← SAYAC + 1
+            BİTİR_EĞER
+        SONRAKİ
+
+        EĞER SAYAC = 0 İSE
+            YAZ "Eşleşen şarkı bulunamadı."
+        BİTİR_EĞER
+
+    DEĞİLSE_EĞER SEÇİM = 5 İSE
+        YAZ "Sıralama ölçütünü girin: (ad / sanatçı / yıl / tür)"
+        kriter ← kullanıcıdan_girdi_al()
+        şarkı_listesi ← SIRALA(şarkı_listesi, kriter)
+        YAZ "Şarkılar başarıyla sıralandı!"
+
+    DEĞİLSE_EĞER SEÇİM = 6 İSE
+        YAZ "=== KOLEKSİYON ==="
+        İNDİS ← 1
+        HER şarkı İÇİN şarkı_listesi LİSTESİNDE TEKRARLA
+            YAZ İNDİS, ") ", şarkı.ad, " - ", şarkı.sanatçı, " (", şarkı.yıl, ")"
+            İNDİS ← İNDİS + 1
+        SONRAKİ
+
+    DEĞİLSE_EĞER SEÇİM = 7 İSE
+        YAZ "Programdan çıkmak istediğinize emin misiniz? (E/H)"
+        onay ← kullanıcıdan_girdi_al()
+        EĞER onay = "E" VEYA onay = "e" İSE
+            YAZ "Görüşmek üzere!"
+            ÇIKIŞ_YAP
+        BİTİR_EĞER
+
+    DEĞİLSE
+        YAZ "Geçersiz seçim! Lütfen tekrar deneyin."
+    BİTİR_EĞER
+
+SONSUZ_DÖNGÜ_SONU
+
+BİTİR
